@@ -22,7 +22,7 @@ if __name__ == "__main__":
                           'query': ('', 'Path of query file'),
                           'pairs'   : ('', 'Path of testing spectrum pairs'),
                           'model' : ('', 'Path of pre-trained model'),
-                          'out' : ('', 'Path of output folder')
+                          'output' : ('', 'Path of output folder')
                           })        
     
     if not config.load(sys.argv):
@@ -54,6 +54,6 @@ if __name__ == "__main__":
         test_dataset = MSPairSet(source_db, query_db, test_index_file_name)
     
     register_forward_hook_4_model(net)
-    output_folder = config.get_value('out')
+    output_folder = config.get_value('output')
     explain_spectral_similarity(test_dataset, net, device, output_folder)
     
