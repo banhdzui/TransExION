@@ -27,13 +27,32 @@ TransExtION provides a post-hoc explanation. It shows the heatmap indicating the
 * pyteomics
 
 ## Usage
-**Input Data**: To work with large scale dataset, the input data files are converted into h5py format. Our library supports a function to convert a MGF format file into h5py format. To do the conversion, run the script ```ms_convert_mgf2h5py.py``` with parameters. For example,
+**Input Data**: 
 
+To work with large scale dataset, the input data files are converted into h5py format. Our library supports a function to convert a MGF format file into h5py format. To do the conversion, run the script ```ms_convert_mgf2h5py.py``` with parameters.
+ 
 <pre><code class="language-python"> python ms_convert_mgf2h5py.py --mgf [a MGF file] --out [output file] </code></pre>
   
 **Training model**
+
+A TransExtION model can be trained by running the script ```ms_train_spectal_similarity.py``` with parameters. 
+  
+<pre><code class="language-python"> python ms_train_spectal_similarity.py --db [training spectrum file] --query [validation spectrum file] --db-ref [training structural similarity file] --query-ref [validation structural similarity file] --batchsize [batch size] --lr [learning rate] --decay-weight [decay weight] --output [model file] --log [log file] </code></pre>
+  
+Structural similarity files contain the structural similarity matrix among spectra which can be computed by using the script ```ms_compute_structural_similarity.py```. 
   
 **Testing model**
   
+To compute spectral similarity between spectra using a trained TransExtION model, the script ```ms_test_spectral_similarity.py``` can be used. It pairs the spectra in the query file with the ones in the reference file and then computes their spectral similarity.
+  
+<pre><code class="language-python"> python ms_test_spectral_similarity.py --db [reference spectrum file] --query [query spectrum file] --pairs [spectrum pair id file] --model [model file] --output [result file]</code></pre>
+  
+The pairing depends on the param ```pairs```. This param enumerated the spectrum pairs that the users would like to estimate the spectral similarity. If it is empty then every query spectrum is paired with every reference spectra.
+  
 **Explanation**
 
+The post-hoc explanation is demonstrated in the script ```ms_explain_spectral_similarity.py```. The script can be run with parameters.
+  
+<pre><code class="language-python"> python ms_explain_spectral_similarity.py --db [reference spectrum file] --query [query spectrum file] --pairs [spectrum pair id file] --model [model file] --output [output folder]</code></pre>
+  
+The script pairs the spectra in the query file with the ones in the reference file and then do post-hoc explanation for the pairs that the model estimates as highly similar in structure. The output are heatmap files which are generated in output folder.
