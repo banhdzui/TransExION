@@ -39,15 +39,19 @@ A TransExtION model can be trained by running the script ```ms_train_spectal_sim
   
 <pre><code class="language-python"> python ms_train_spectal_similarity.py --db [training spectrum file] --query [validation spectrum file] --db-ref [training structural similarity file] --query-ref [validation structural similarity file] --batchsize [batch size] --lr [learning rate] --decay-weight [decay weight] --output [model file] --log [log file] </code></pre>
   
-Structural similarity files contain the structural similarity matrix among spectra which can be computed by using the script ```ms_compute_structural_similarity.py```. 
+The ```trainiing spectrum file``` and ```validation spectrum file``` should be in h5py format. To convert a MGF format file to a h5py format file, see the Input Data section.
+
+```Structural similarity files``` contain the structural similarity matrix among spectra which can be computed by using the script ```ms_compute_structural_similarity.py```. 
   
 **Testing model**
   
 To compute spectral similarity between spectra using a trained TransExtION model, the script ```ms_test_spectral_similarity.py``` can be used. It pairs the spectra in the query file with the ones in the reference file and then computes their spectral similarity.
   
 <pre><code class="language-python"> python ms_test_spectral_similarity.py --db [reference spectrum file] --query [query spectrum file] --pairs [spectrum pair id file] --model [model file] --output [result file]</code></pre>
-  
-The pairing depends on the param ```pairs```. This param enumerated the spectrum pairs that the users would like to estimate the spectral similarity. If it is empty then every query spectrum is paired with every reference spectra.
+
+The ```reference spectrum file``` and ```query spectrum file``` should be in h5py format. To convert a MGF format file to a h5py format file, see the Input Data section.
+
+The pairing depends on the param ```pairs```. This param enumerated the spectrum pairs that the users would like to estimate the spectral similarity. If it is empty then every query spectrum is paired with every reference spectra. The ```spectrum pair id file``` should also be in h5py format. You can convert a csv file into h5py format using the script ```ms_covert_csv2h5py.py```.
   
 **Explanation**
 
