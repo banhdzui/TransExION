@@ -16,8 +16,9 @@ TransExION is a supervised learning method estimating ***spectral similarity*** 
 
 It is a heatmap indicating the association between the query fragments and reference fragments. Below is an example of the heatmap and their structure. Each heatmap cell shows the query product ion (the first value in the brackets), reference product ion(s) and their mass difference (the second value in the brackets).   
   <div>
-<image src="https://github.com/banhdzui/TransExtION/assets/37836357/358ca639-b82f-4537-ac34-76f7ac1ff66f" width="200">
-<image src="https://github.com/banhdzui/TransExtION/assets/37836357/944c741a-8eb8-4bfd-af8c-6eb3059f8859" width="500">
+<image src="https://github.com/banhdzui/TransExION/assets/37836357/2a935247-0190-43a9-94b0-76af21f5e1e5" width="200">
+<image src="https://github.com/banhdzui/TransExION/assets/37836357/42eef4f1-9dd8-46a5-8a01-234f895dd985" width="500">
+
   </div>
   
 ## Requirements  
