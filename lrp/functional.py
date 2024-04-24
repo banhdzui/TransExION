@@ -120,6 +120,9 @@ def draw_explaining_heatmap(mz, check_mz, fragment_weights, heat_map, diff_map, 
         
     plt.figure(figsize=(10, L*0.25))
     color_map = plt.pcolor(reduced_heatmap, cmap='YlOrBr')
+    
+    heat_threshold = (np.max(reduced_heatmap) - np.min(reduced_heatmap)) * 0.75
+    
     for i, y in enumerate(sorted_fragments):
         for x in range(heat_map.shape[1]):
             if heat_map[y, x] <= 0 or fragment_weights[y] <= 0: continue
@@ -138,10 +141,13 @@ def draw_explaining_heatmap(mz, check_mz, fragment_weights, heat_map, diff_map, 
             if d_upper is not None and d_upper > mz[y]: e += '%.2f' % upper_bound 
             else: e += '-'
             
+            text_color = "black" 
+            if (reduced_heatmap[i, x] >= heat_threshold): text_color = "white"
+            
             plt.text(x + 0.5, i + 0.5, e,
              horizontalalignment='center',
              verticalalignment='center',
-             fontsize='small')
+             fontsize='small', color=text_color)
 
     plt.colorbar(color_map)
     
